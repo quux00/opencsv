@@ -178,6 +178,7 @@ public class CSVReaderTest {
 
         nextLine = c.readNext();
         assertEquals(3, nextLine.length);
+        c.close();
     }
 
     @Test
@@ -189,9 +190,25 @@ public class CSVReaderTest {
 
         String[] nextLine = c.readNext();
         assertEquals(3, nextLine.length);
-
+        
+        c.close();
     }
 
+    @Test
+    public void parsePipeDelimitedString() throws IOException {
+        StringBuilder sb = new StringBuilder(CSVParser.INITIAL_READ_SIZE);
+        sb.append("[bar]|[baz]").append("\n");
+
+        CSVReader c = new CSVReader(new StringReader(sb.toString()), '|');
+
+        String[] nextLine = c.readNext();
+        assertEquals(2, nextLine.length);
+        assertEquals("[bar]", nextLine[0]);
+        assertEquals("[baz]", nextLine[1]);
+        
+        c.close();
+    }
+    
     /**
      * Tests option to skip the first few lines of a file.
      *
@@ -210,6 +227,8 @@ public class CSVReaderTest {
         assertEquals(3, nextLine.length);
 
         assertEquals("a", nextLine[0]);
+        
+        c.close();
     }
 
 
@@ -233,6 +252,8 @@ public class CSVReaderTest {
 
         assertEquals("a", nextLine[0]);
         assertEquals("c", nextLine[2]);
+        
+        c.close();
     }
 
     /**
@@ -255,7 +276,7 @@ public class CSVReaderTest {
         assertEquals("a", nextLine[0]);
         assertEquals("1234567", nextLine[1]);
         assertEquals("c", nextLine[2]);
-
+        c.close();
     }
 
 
@@ -281,7 +302,7 @@ public class CSVReaderTest {
         assertEquals(1, nextLine[1].length());
         assertEquals("\'", nextLine[1]);
         assertEquals("c", nextLine[2]);
-
+        c.close();
     }
 
     /**
@@ -306,7 +327,7 @@ public class CSVReaderTest {
         assertEquals(0, nextLine[1].length());
         assertEquals("", nextLine[1]);
         assertEquals("c", nextLine[2]);
-
+        c.close();
     }
 
     @Test
@@ -323,6 +344,7 @@ public class CSVReaderTest {
         assertEquals("a", nextLine[0]);
         assertEquals("b", nextLine[1]);
         assertEquals("c", nextLine[2]);
+        c.close();
     }
 
 
@@ -339,7 +361,7 @@ public class CSVReaderTest {
         assertEquals(3, nextLine.length);
 
         assertEquals("123\"4567", nextLine[1]);
-
+        c.close();
     }
 
     @Test
@@ -355,7 +377,7 @@ public class CSVReaderTest {
         assertEquals(3, nextLine.length);
 
         assertEquals("123\\4567", nextLine[1]);
-
+        c.close();
     }
 
 
@@ -382,7 +404,7 @@ public class CSVReaderTest {
         assertEquals(2, nextLine[1].length());
         assertEquals("''", nextLine[1]);
         assertEquals("c", nextLine[2]);
-
+        c.close();
     }
 
     /**
@@ -407,7 +429,7 @@ public class CSVReaderTest {
 
         assertEquals("1234567", nextLine[1]);
         assertEquals("c", nextLine[2]);
-
+        c.close();
     }
 
     @Test
@@ -424,8 +446,38 @@ public class CSVReaderTest {
         assertEquals("b", nextLine[1]);
         assertEquals("c", nextLine[2]);
         assertEquals("ddd\"eee", nextLine[3]);
+        c.close();
     }
 
+    //////////
+
+
+    @Test
+    public void testASingleQuoteAsDataElementWithEmptyField2() throws IOException {
+      StringBuilder sb = new StringBuilder(CSVParser.INITIAL_READ_SIZE);
+
+      sb.append("\"\";1").append("\n");// ;1
+      sb.append("\"\";2").append("\n");// ;2
+
+      CSVReader c = new CSVReader(new StringReader(sb.toString()), ';', '\"');
+
+      String[] nextLine = c.readNext();
+      assertEquals(2, nextLine.length);
+
+      assertEquals(0, nextLine[0].length());
+      assertEquals("1", nextLine[1]);
+
+      nextLine = c.readNext();
+      assertEquals(2, nextLine.length);
+
+      assertEquals("", nextLine[0]);
+      assertEquals(0, nextLine[0].length());
+      assertEquals("2", nextLine[1]);
+      
+      c.close();
+    }
+    //////////
+    
     @Test(expected = UnsupportedOperationException.class)
     public void quoteAndEscapeMustBeDifferent() {
         StringBuilder sb = new StringBuilder(CSVParser.INITIAL_READ_SIZE);
