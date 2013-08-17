@@ -327,8 +327,8 @@ public class CSVParser {
         if (sb != null) {
             tokensOnThisLine.add(sb.toString());
         }
+        inField = false; // clear state for next go round
         return tokensOnThisLine.toArray(new String[tokensOnThisLine.size()]);
-
     }
 
     /**

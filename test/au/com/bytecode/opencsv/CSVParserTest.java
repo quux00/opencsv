@@ -739,7 +739,6 @@ public class CSVParserTest {
     }
 
     
-    //////
     @Test    // https://sourceforge.net/p/opencsv/bugs/93/
     public void testIssueSfBugs93() throws IOException {
         csvParser = new CSVParserBuilder().withSeparator(';').withQuoteChar('"').build();
@@ -782,7 +781,6 @@ public class CSVParserTest {
       assertEquals("\"1\" ", nextLine[0]);
       assertEquals("\"2\"", nextLine[1]);
     }
-    //////
     
     @Test(expected = IOException.class)
     public void anIOExceptionThrownifStringEndsInsideAQuotedString() throws IOException {
