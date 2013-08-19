@@ -48,8 +48,7 @@ public class CSVReaderBuilder {
      *
      * @param reader the reader to an underlying CSV source.
      */
-    CSVReaderBuilder(
-            final Reader reader) {
+    public CSVReaderBuilder(final Reader reader) {
         if (reader == null) {
             throw new IllegalArgumentException("Reader may not be null");
         }
@@ -61,8 +60,7 @@ public class CSVReaderBuilder {
      *
      * @param skipLines the line number to skip for start reading
      */
-    CSVReaderBuilder withSkipLines(
-            final int skipLines) {
+    public CSVReaderBuilder withSkipLines(final int skipLines) {
         this.skipLines = (skipLines <= 0 ? 0 : skipLines);
         return this;
     }
@@ -73,8 +71,7 @@ public class CSVReaderBuilder {
      *
      * @param csvParser the parser to use to parse the input
      */
-    CSVReaderBuilder withCSVParser(
-            final /*@Nullable*/ CSVParser csvParser) {
+    public CSVReaderBuilder withCSVParser(final /*@Nullable*/ CSVParser csvParser) {
         this.csvParser = csvParser;
         return this;
     }
@@ -83,9 +80,8 @@ public class CSVReaderBuilder {
     /**
      * Constructs CSVReader
      */
-    CSVReader build() {
-        final CSVParser parser =
-                (csvParser != null ? csvParser : new CSVParser());
+    public CSVReader build() {
+        final CSVParser parser = (csvParser != null ? csvParser : new CSVParser());
         return new CSVReader(reader, skipLines, parser);
     }
 }

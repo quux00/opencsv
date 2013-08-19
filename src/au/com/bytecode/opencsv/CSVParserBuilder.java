@@ -34,9 +34,7 @@ public class CSVParserBuilder {
     char quoteChar = CSVParser.DEFAULT_QUOTE_CHARACTER;
     char escapeChar = CSVParser.DEFAULT_ESCAPE_CHARACTER;
     boolean strictQuotes = CSVParser.DEFAULT_STRICT_QUOTES;
-    ;
-    boolean ignoreLeadingWhiteSpace =
-            CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE;
+    boolean ignoreLeadingWhiteSpace = CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE;
     boolean ignoreQuotations = CSVParser.DEFAULT_IGNORE_QUOTATIONS;
     boolean retainQuoteChars = CSVParser.DEFAULT_RETAIN_QUOTE_CHARS;
 
@@ -45,8 +43,7 @@ public class CSVParserBuilder {
      *
      * @param separator the delimiter to use for separating entries
      */
-    CSVParserBuilder withSeparator(
-            final char separator) {
+    public CSVParserBuilder withSeparator(final char separator) {
         this.separator = separator;
         return this;
     }
@@ -57,8 +54,7 @@ public class CSVParserBuilder {
      *
      * @param quotechar the character to use for quoted elements
      */
-    CSVParserBuilder withQuoteChar(
-            final char quoteChar) {
+    public CSVParserBuilder withQuoteChar(final char quoteChar) {
         this.quoteChar = quoteChar;
         return this;
     }
@@ -69,7 +65,7 @@ public class CSVParserBuilder {
      *
      * @param escape the character to use for escaping a separator or quote
      */
-    CSVParserBuilder withEscapeChar(
+    public CSVParserBuilder withEscapeChar(
             final char escapeChar) {
         this.escapeChar = escapeChar;
         return this;
@@ -82,8 +78,7 @@ public class CSVParserBuilder {
      *
      * @param strictQuotes if true, characters outside the quotes are ignored
      */
-    CSVParserBuilder withStrictQuotes(
-            final boolean strictQuotes) {
+    public CSVParserBuilder withStrictQuotes(final boolean strictQuotes) {
         this.strictQuotes = strictQuotes;
         return this;
     }
@@ -94,8 +89,7 @@ public class CSVParserBuilder {
      *
      * @param ignoreLeadingWhiteSpace if true, white space in front of a quote in a field is ignored
      */
-    CSVParserBuilder withIgnoreLeadingWhiteSpace(
-            final boolean ignoreLeadingWhiteSpace) {
+    public CSVParserBuilder withIgnoreLeadingWhiteSpace(final boolean ignoreLeadingWhiteSpace) {
         this.ignoreLeadingWhiteSpace = ignoreLeadingWhiteSpace;
         return this;
     }
@@ -105,8 +99,7 @@ public class CSVParserBuilder {
      *
      * @param ignoreQuotations if true, quotations are ignored
      */
-    CSVParserBuilder withIgnoreQuotations(
-            final boolean ignoreQuotations) {
+    public CSVParserBuilder withIgnoreQuotations(final boolean ignoreQuotations) {
         this.ignoreQuotations = ignoreQuotations;
         return this;
     }
@@ -117,8 +110,7 @@ public class CSVParserBuilder {
      *
      * @param ignoreQuotations if true, quotation chars are retained
      */
-    CSVParserBuilder withRetainQuoteChars(
-            final boolean retainQuoteChars) {
+    public CSVParserBuilder withRetainQuoteChars(final boolean retainQuoteChars) {
         this.retainQuoteChars = retainQuoteChars;
         return this;
     }
@@ -126,7 +118,7 @@ public class CSVParserBuilder {
     /**
      * Constructs CSVParser
      */
-    CSVParser build() {
+    public CSVParser build() {
         return new CSVParser(
                 separator,
                 quoteChar,
