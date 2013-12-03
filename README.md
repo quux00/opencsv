@@ -1,5 +1,14 @@
 # OpenCSV
 
+**[Update]**: After trying to work with the OpenCSV CSVParser code base and fix some of its pernicious bugs, I gave up and rewrote the whole parser with an eye towards simplifying it.  The result is the [simplecsv](https://github.com/quux00/simplecsv) project.  Please take a look at that project and see if it meets your needs.
+
+This OpenCSV fork is now kaputt.
+
+The open issue filed against the ResultSetHelperService here was fixed in the simplecsv project, but not here.
+
+
+### Original documentation
+
 This is my fork of the Java OpenCSV project: http://opencsv.sourceforge.net
 
 That project has some traction in the Java community but does not seem to be actively maintained any longer, as there has been a pending 2.4 release that has not be published to maven central and numerous patches, bug fixes and feature requests have been posted over the past 1+ year(s) and not responded to.
@@ -22,12 +31,6 @@ If there is active interest in using this fork, please send pull requests (or pa
 
 I have retained the package names of the opencsv project.
 
-
-## Opinion
-
-In my opinion, a CSV parser project should focused on just doing that.  The OpenCSV project has added ResultSet support to dump SQL Tables to CSV.  In my view, that is not what this project should be focused on, so I'm not interested in extending features like that.
-
-I want this to be a fast simple CSV parser, so patches and pull requests along those lines are welcome.
 
 
 ## TODO
